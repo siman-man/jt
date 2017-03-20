@@ -1,5 +1,7 @@
 # Jt
 
+[![Build Status](https://travis-ci.org/siman-man/jt.svg?branch=master)](https://travis-ci.org/siman-man/jt)
+
 tree command for json.
 
 ## Installation
