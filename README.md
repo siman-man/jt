@@ -1,4 +1,4 @@
-# Jt
+# jt
 
 [![Build Status](https://travis-ci.org/siman-man/jt.svg?branch=master)](https://travis-ci.org/siman-man/jt)
 
