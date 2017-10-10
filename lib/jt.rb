@@ -7,14 +7,33 @@ class Jt
   T_LINE = '├────'
   I_LINE = '│'
   L_LINE = '└────'
+  VALUES = Regexp.union(
+    [
+      "true",
+      "false",
+      "null",
+      /[+-]?\d+\.?\d*/,
+      /".*"/
+    ]
+  )
 
   def self.create(text)
     new(text)
   end
 
   def initialize(text)
-    @queue = ["root\n".colorize(:red)]
-    parse(JSON.parse(text))
+    object = JSON.parse(text)
+    @queue = []
+
+    if object.instance_of?(Hash)
+      @queue << "root\n".colorize(:red)
+      parse(object)
+    elsif text =~ VALUES
+      @queue << "#{output_value(object)}\n"
+      return
+    else
+      raise "Unexpected value #{object.inspect}"
+    end
   end
 
   def to_s
@@ -56,6 +75,8 @@ class Jt
     case value.class.to_s
       when /Hash/
         value.inspect
+      when /NilClass/
+        "null"
       when /Integer|Fixnum|Float|Bignum/
         value.inspect.colorize(:blue)
       when /TrueClass|FalseClass/

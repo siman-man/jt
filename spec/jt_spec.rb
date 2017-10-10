@@ -134,5 +134,55 @@ root
 
       expect(Jt.create(json).to_s.uncolorize).to eq(expect)
     end
+
+    it "test case 04" do
+      json, expect =<<-JSON, <<-EXPECT
+3
+      JSON
+3
+      EXPECT
+
+      expect(Jt.create(json).to_s.uncolorize).to eq(expect)
+    end
+
+    it "test case 05" do
+      json, expect =<<-JSON, <<-EXPECT
+false
+      JSON
+false
+      EXPECT
+
+      expect(Jt.create(json).to_s.uncolorize).to eq(expect)
+    end
+
+    it "test case 06" do
+      json, expect =<<-JSON, <<-EXPECT
+true
+      JSON
+true
+      EXPECT
+
+      expect(Jt.create(json).to_s.uncolorize).to eq(expect)
+    end
+
+    it "test case 07" do
+      json, expect =<<-JSON, <<-EXPECT
+"hi"
+      JSON
+"hi"
+      EXPECT
+
+      expect(Jt.create(json).to_s.uncolorize).to eq(expect)
+    end
+
+    it "test case 08" do
+      json, expect =<<-JSON, <<-EXPECT
+null
+      JSON
+null
+      EXPECT
+
+      expect(Jt.create(json).to_s.uncolorize).to eq(expect)
+    end
   end
 end
